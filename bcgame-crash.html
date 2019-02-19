@@ -201,8 +201,8 @@
         }
       };
       var hash_url = window.location.search
-      if ((/\?hash=/).test(hash_url)) {
-        var hash = hash_url.replace(/\?hash=/, '')
+      if ((/\hash=/).test(hash_url)) {
+        var hash = hash_url.replace(/\hash=/, '')
         $('#game_hash_input').val(hash)
         $('#game_verify_submit').click()
       }
