@@ -260,9 +260,10 @@
 					var param = strs[i]
 					var params = param.split("=")
 					alert(params[1])
+					$('#user_name').val(params[1])
 					switch (i){
 						case 1:
-							$('#user_name').val(params[1])
+							
 							break;
 						default:
 							break;
