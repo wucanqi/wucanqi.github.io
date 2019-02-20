@@ -189,6 +189,7 @@
 				let sha = CryptoJS.SHA256(sign)
 				$('#sha256').html(sha)
 				isVerifying = false
+				$('#verify-content').show()
       });
 
       const gameResult = (seed) => {
