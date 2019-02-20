@@ -159,12 +159,12 @@
     </div>
     
 		
-    <div class="container">
+    <div class="container" id="verify-content">
 			<div class="btn"> Verify </div> 
     </div>
 		<div class="container">
 			<div class="line">
-				<label>sha256(sig):</label>
+				<label>sha256(sign):</label>
 				<span>original1234</span>
 			</div>
 			<div class="line">
@@ -253,6 +253,8 @@
           $(this).insertAfter(to.children().eq(index - 1));
         }
       };
+			
+			$('#verify-content').hide()
       var hash_url = window.location.search
       // if ((/\?user_name=\?/).test(hash_url)) {
         var strs= new Array(); //定义一数组 
