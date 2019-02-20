@@ -165,7 +165,7 @@
 		<div class="container" id="verify-content">
 			<div class="line">
 				<label>sha256(sign):</label>
-				<span id="sha256"></span>
+				<span id="sha">1</span>
 			</div>
 			<div class="line">
 				<label>last 6 digits:</label>
@@ -187,8 +187,7 @@
         if (isVerifying) return;
         isVerifying = true;
 				let sha = CryptoJS.SHA256(sign)
-				$('#sha256').html(sha)
-				alert($('#sha256'))
+				$('#sha').html(sha)
 				isVerifying = false
 				$('#verify-content').show()
       });
