@@ -253,7 +253,7 @@
         }
       };
       var hash_url = window.location.search
-      if ((/\?user_name=/).test(hash_url)) {
+      if ((/\?user_name=\?/).test(hash_url)) {
         var user_name = hash_url.replace(/\?user_name=/, '')
 				alert(user_name)
         // $('#game_hash_input').val(hash)
