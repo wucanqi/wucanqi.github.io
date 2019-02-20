@@ -187,6 +187,7 @@
         if (isVerifying) return;
         isVerifying = true;
 				let sha = CryptoJS.SHA256(sign)
+				console.log(sha)
 				$('#sha').html(sha)
 				isVerifying = false
 				$('#verify-content').show()
