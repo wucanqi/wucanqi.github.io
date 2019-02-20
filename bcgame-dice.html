@@ -182,42 +182,12 @@
     <script type="text/javascript">
       var isVerifying = false;
       $('#game_verify_submit').on('click', () => {
+				alert('验证中...')
         if (isVerifying) return;
         isVerifying = true;
-				alert('验证中...')
+				
       });
-      $('#game_amount_input').on('keyup', () => {
-        if ($('#game_amount_input').val() >= 10000) {
-          if ($('#game_verify_warning').length) return;
-          $('#game_verify_submit').parent().append(
-            $('<span/>').attr({
-              'id': 'game_verify_warning',
-              'class': 'tag is-warning'
-            }).text("Verifying a huge amount of games may consume more ressources from your CPU")
-          );
-        } else {
-          if ($('#game_verify_warning').length) {
-            $('#game_verify_warning').remove();
-          }
-        }
-      });
-      const addTableRow = (hash, bust, index) => {
-        $('<tr/>').attr({
-          'class': index === 0 ? 'is-first' : null
-        }).append(
-          $('<td/>').text(hash)
-        ).append(
-          $('<td/>').text(bust).attr({
-            'class': bust === 1.98 ? 'is-at-median' : bust > 1.98 ? 'is-over-median' : 'is-under-median'
-          })
-        ).appendToWithIndex($('#game_verify_table'), index);
-        if (index >= $('#game_amount_input').val() - 1) {
-          $('#game_hash_input').parent().removeClass('is-loading');
-          $('#game_verify_submit').removeClass('is-loading');
-          $('#game_hash_input, #game_amount_input, #game_verify_submit').removeAttr("disabled");
-          isVerifying = false;
-        }
-      };
+
       const gameResult = (seed) => {
         const nBits = 52; // number of most significant bits to use
         // 1. r = 52 most significant bits
