@@ -173,7 +173,7 @@
 			</div>
 			<div class="line">
 				<label>lucky number:</label>
-				<span>original1234</span>
+				<span id="result">original1234</span>
 			</div>
 			
 		</div>
@@ -188,8 +188,10 @@
         isVerifying = true;
 				let sha = CryptoJS.SHA256(sign)
 				$('#sha').html(sha.toString())
-				let digitsStr = sha.toString().substr(sha.toString().length-5,6)
+				let digitsStr = sha.toString().substr(sha.toString().length-6,6)
 				$('#digits').html(digitsStr+'('+ parseInt(digitsStr,16).toString() +')')
+				let result = gameResult(sha.toString())
+				$('#digits').html(result)
 				isVerifying = false
 				$('#verify-content').show()
       });
