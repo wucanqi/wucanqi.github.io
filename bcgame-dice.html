@@ -112,7 +112,7 @@
     <div class="container">
       <div class="line">
 				<label>user_name:</label>
-				<span>original1234</span>
+				<span id="user_name"></span>
 				
 			</div>
 			<div class="line">
@@ -256,7 +256,17 @@
       // if ((/\?user_name=\?/).test(hash_url)) {
         var strs= new Array(); //定义一数组 
 				strs=hash_url.split("?"); //字符分割 
-				alert(strs[1])
+				for (var i = 1; i < strs.length; i ++) {
+					var param = strs[i]
+					var params = param.split("=")
+					switch (i){
+						case 1:
+							$('#user_name').val(params[1])
+							break;
+						default:
+							break;
+					}
+				}
         // $('#game_hash_input').val(hash)
         // $('#game_verify_submit').click()
       // }
