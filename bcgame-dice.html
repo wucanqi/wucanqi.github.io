@@ -165,7 +165,7 @@
 		<div class="container" id="verify-content">
 			<div class="line">
 				<label>sha256(sign):</label>
-				<span>original1234</span>
+				<span id="sha256"></span>
 			</div>
 			<div class="line">
 				<label>last 6 digits:</label>
@@ -181,11 +181,14 @@
   </section>
     <script type="text/javascript">
       var isVerifying = false;
+			var sign = ''
       $('#game_verify_submit').on('click', () => {
 				
         if (isVerifying) return;
         isVerifying = true;
-				alert('验证中...')
+				let sha = CryptoJS.SHA256(sign)
+				$('#sha256').html(sha)
+				isVerifying = false
       });
 
       const gameResult = (seed) => {
@@ -201,25 +204,16 @@
         const result = Math.floor(X);
         return Math.max(1, result / 100);
       };
-      $.fn.appendToWithIndex = function(to, index) {
-        if (!to instanceof jQuery) {
-          to = $(to);
-        };
-        if (index === 0) {
-          $(this).prependTo(to)
-        } else {
-          $(this).insertAfter(to.children().eq(index - 1));
-        }
-      };
 			
 			$('#verify-content').hide()
       var hash_url = window.location.search
       // if ((/\?user_name=\?/).test(hash_url)) {
-        var strs= new Array(); //定义一数组 
-				strs=hash_url.split("?"); //字符分割 
-				for (var i = 1; i < strs.length; i ++) {
-					var param = strs[i]
-					var params = param.split("=")
+      var strs= new Array(); //定义一数组 
+			strs=hash_url.split("?"); //字符分割 
+			
+			for (var i = 1; i < strs.length; i ++) {
+				var param = strs[i]
+				var params = param.split("=")
 					
 
 					switch (i){
@@ -242,7 +236,8 @@
 							$('#public_key').html(params[1])
 							break;
 						case 7:
-							$('#sign').html(params[1])
+						sign = params[1]
+							$('#sign').html(sign)
 							break;
 						case 8:
 							$('#formula').html(params[1])
