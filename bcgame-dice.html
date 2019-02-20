@@ -259,15 +259,15 @@
 				for (var i = 1; i < strs.length; i ++) {
 					var param = strs[i]
 					var params = param.split("=")
-					alert($("#user_name"))
-					// $('#user_name').val(params[1])
-// 					switch (i){
-// 						case 1:
-// 							
-// 							break;
-// 						default:
-// 							break;
-// 					}
+					
+
+					switch (i){
+						case 1:
+							$('#user_name').html(params[1])
+							break;
+						default:
+							break;
+					}
 				}
         // $('#game_hash_input').val(hash)
         // $('#game_verify_submit').click()
