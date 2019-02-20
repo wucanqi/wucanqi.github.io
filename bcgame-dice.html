@@ -117,42 +117,42 @@
 			</div>
 			<div class="line">
 				<label>play_count:</label>
-				<span>original1234</span>
+				<span id="play_count"></span>
 				
 			</div>
 			<div class="line">
 				<label>playerSeed:</label>
-				<span>original1234</span>
+				<span id="playerSeed"></span>
 				
 			</div>
 			<div class="line">
 				<label>time stamp:</label>
-				<span>original1234</span>
+				<span id="time_stamp">original1234</span>
 				
 			</div>
 			<div class="line">
 				<label>combine_seed:</label>
-				<span>original1234</span>
+				<span id="combine_seed">original1234</span>
 				
 			</div>
 			<div class="line">
 				<label>combine_seed(hash):</label>
-				<span>original1234</span>
+				<span id="combine_seed_hash">original1234</span>
 				
 			</div>
 			<div class="line">
 				<label>public key:</label>
-				<span>original1234</span>
+				<span id="public_key">original1234</span>
 				
 			</div>
 			<div class="line">
 				<label>sign:</label>
-				<span>original1234</span>
+				<span id="sign">original1234</span>
 				
 			</div>
 			<div class="line">
 				<label>formula:</label>
-				<span>original1234</span>
+				<span id="formula">original1234</span>
 				
 			</div>
     </div>
@@ -264,6 +264,30 @@
 					switch (i){
 						case 1:
 							$('#user_name').html(params[1])
+							break;
+						case 2:
+							$('#play_count').html(params[1])
+							break;
+						case 3:
+							$('#playerSeed').html('')
+							break;
+						case 4:
+							$('#time_stamp').html(params[1])
+							break;
+						case 5:
+							$('#combine_seed').html(params[1])
+							break;
+						case 6:
+							$('#combine_seed_hash').html(params[1])
+							break;
+						case 7:
+							$('#public_key').html(params[1])
+							break;
+						case 8:
+							$('#sign').html(params[1])
+							break;
+						case 9:
+							$('#formula').html(params[1])
 							break;
 						default:
 							break;
