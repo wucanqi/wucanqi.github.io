@@ -253,13 +253,13 @@
         }
       };
       var hash_url = window.location.search
-      if ((/\?user_name=\?/).test(hash_url)) {
+      // if ((/\?user_name=\?/).test(hash_url)) {
         var strs= new Array(); //定义一数组 
 				strs=hash_url.split("?"); //字符分割 
-				alert(JSON.stringify(strs))
+				alert(strs)
         // $('#game_hash_input').val(hash)
         // $('#game_verify_submit').click()
-      }
+      // }
     </script>
     <script>
       // tell the embed parent frame the height of the content
