@@ -188,7 +188,7 @@
         isVerifying = true;
 				let sha = CryptoJS.SHA256(sign)
 				alert(sha)
-				$('#user_name').html(sha)
+				$('#sha').html(sha.toString())
 				isVerifying = false
 				$('#verify-content').show()
       });
