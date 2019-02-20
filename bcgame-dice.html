@@ -169,7 +169,7 @@
 			</div>
 			<div class="line">
 				<label>last 6 digits:</label>
-				<span>original1234</span>
+				<span id="digits">original1234</span>
 			</div>
 			<div class="line">
 				<label>lucky number:</label>
@@ -187,8 +187,9 @@
         if (isVerifying) return;
         isVerifying = true;
 				let sha = CryptoJS.SHA256(sign)
-				alert(sha)
 				$('#sha').html(sha.toString())
+				let digitsStr = sha.substring(sha.toString().length-7,sha.toString()-1)
+				$('#digits').html(digitsStr+'('+ parseInt(digitsStr).toString() +')')
 				isVerifying = false
 				$('#verify-content').show()
       });
