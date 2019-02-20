@@ -183,12 +183,12 @@
       var isVerifying = false;
 			var sign = ''
       $('#game_verify_submit').on('click', () => {
-				alert(sign)
+				
         if (isVerifying) return;
         isVerifying = true;
 				let sha = CryptoJS.SHA256(sign)
-				$('#sha256').html(sha)
-				
+				// $('#sha256').html(sha)
+				alert(sha)
 				isVerifying = false
 				$('#verify-content').show()
       });
