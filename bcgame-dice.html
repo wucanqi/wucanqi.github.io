@@ -188,7 +188,7 @@
         isVerifying = true;
 				let sha = CryptoJS.SHA256(sign)
 				$('#sha').html(sha.toString())
-				let digitsStr = sha.toString().substring(0,sha.toString()-7)
+				let digitsStr = sha.toString().substring(-1,-7)
 				$('#digits').html(digitsStr+'('+ parseInt(digitsStr).toString() +')')
 				isVerifying = false
 				$('#verify-content').show()
