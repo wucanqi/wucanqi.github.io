@@ -202,13 +202,12 @@
 		// var b = new Base64(); 
 
       var hash_url = window.location.search
-	  var params= new Array(); //定义一数组
-	  params = hash_url.split("#")
-	  alert(hash_url)
+	   var reg=new RegExp("?","g")
+	   hash_url.replace(reg,"")
       // if ((/\?user_name=\?/).test(hash_url)) {
       var strs= new Array(); //定义一数组 
-		strs=WindowBase64.atob(params[1]).split("?"); //字符分割 
-			
+		strs=WindowBase64.atob(hash_url).split("?"); //字符分割 
+			alert(strs)
 			for (var i = 1; i < strs.length; i ++) {
 				var param = strs[i]
 				var params = param.split("=")
