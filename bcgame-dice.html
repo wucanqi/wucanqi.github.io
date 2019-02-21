@@ -313,8 +313,8 @@
 	   // hash_url.replace(/?/g,"")
       // if ((/\?user_name=\?/).test(hash_url)) {
       var strs= new Array(); //定义一数组 
-	  alert(b.decode(hash_url))
-		strs=WindowBase64.atob(hash_url).split("?"); //字符分割 
+
+		strs=b.decode(hash_url).split("?"); //字符分割 
 			
 			for (var i = 1; i < strs.length; i ++) {
 				var param = strs[i]
