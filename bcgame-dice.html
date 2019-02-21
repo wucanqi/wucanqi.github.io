@@ -190,8 +190,9 @@
 				$('#sha').html(sha.toString())
 				let digitsStr = sha.toString().substr(sha.toString().length-6,6)
 				$('#digits').html(digitsStr+'('+ parseInt(digitsStr,16).toString() +')')
-				let result = gameResult(sha.toString())
+				let result = (parseInt(digitsStr,16) % 24) + 1
 				$('#result').html(result)
+				
 				isVerifying = false
 				$('#verify-content').show()
       });
