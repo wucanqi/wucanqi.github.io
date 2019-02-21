@@ -309,42 +309,42 @@
 
       var hash_url = window.location.search
 		
-		alert(hash_url)
+		// alert(hash_url)
 	   // hash_url.replace(/?/g,"")
       // if ((/\?user_name=\?/).test(hash_url)) {
       var strs= new Array(); //定义一数组 
-	alert(b.decode(hash_url))
+	// alert(b.decode(hash_url))
 		strs=b.decode(hash_url).split("?"); //字符分割 
-			alert(JSON.stringify(strs))
+			// alert(JSON.stringify(strs))
 			for (var i = 1; i < strs.length; i ++) {
 				var param = strs[i]
 				var params = param.split("=")
 					
 
 					switch (i){
-						case 1:
+						case 0:
 							$('#user_name').html(params[1])
 							break;
-						case 2:
+						case 1:
 							$('#play_count').html(params[1])
 							break;
-						case 3:
+						case 2:
 							$('#time_stamp').html(params[1])
 							break;
-						case 4:
+						case 3:
 							$('#combine_seed').html(params[1])
 							break;
-						case 5:
+						case 4:
 							$('#combine_seed_hash').html(params[1])
 							break;
-						case 6:
+						case 5:
 							$('#public_key').html(params[1])
 							break;
-						case 7:
+						case 6:
 						sign = params[1]
 							$('#sign').html(sign)
 							break;
-						case 8:
+						case 7:
 							$('#formula').html(params[1])
 							break;
 						default:
