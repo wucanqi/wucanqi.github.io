@@ -11,6 +11,7 @@
   <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.6.2/css/bulma.min.css">
   <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
   <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/3.1.9-1/crypto-js.min.js"></script>
+  <script src="https://cdn.bootcss.com/Base64/1.0.2/base64.min.js"></script> 
   
   <style>
     *, body, button, input, textarea, select {
@@ -212,10 +213,13 @@
       };
 			
 			$('#verify-content').hide()
+			var b = new Base64(); 
+
       var hash_url = window.location.search
+	  var params = hash_url.split("#")
       // if ((/\?user_name=\?/).test(hash_url)) {
       var strs= new Array(); //定义一数组 
-			strs=hash_url.split("?"); //字符分割 
+		strs=b.decode(params[1]).split("?"); //字符分割 
 			
 			for (var i = 1; i < strs.length; i ++) {
 				var param = strs[i]
