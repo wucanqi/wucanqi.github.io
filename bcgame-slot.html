@@ -1,0 +1,369 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <!-- bc.game is the best blockchain gaming platform -->
+  <title>bc.game Crash - Game Verification Script by bcgame</title>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  <meta name="robots" content="noindex, nofollow">
+  <meta name="googlebot" content="noindex, nofollow">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.js"></script>
+  <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.6.2/css/bulma.min.css">
+  <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/3.1.9-1/crypto-js.min.js"></script>
+  
+  <style>
+    *, body, button, input, textarea, select {
+      text-rendering: optimizeLegibility;
+      -moz-osx-font-smoothing: grayscale;
+    }
+    body,div,dl,dt,dd,ul,ol,li,h1,h2,h3,h4,h5,h6,pre,form,fieldset,input,textarea,p,blockquote,th,td {
+      margin:0;
+      padding:0;
+    }
+    table {
+      border-collapse:collapse;
+      border-spacing:0;
+    }
+    fieldset,img {
+      border:0;
+    }
+    address,caption,cite,code,dfn,em,strong,th,var {
+      font-style:normal;
+      font-weight:normal;
+    }
+    ol,ul {
+      list-style:none;
+    }
+    caption,th {
+      text-align:left;
+    }
+    h1,h2,h3,h4,h5,h6 {
+      font-size:100%;
+      font-weight:normal;
+    }
+    q:before,q:after {
+      content:'';
+    }
+    abbr,acronym { border:0;}
+  </style>
+  <style type="text/css">
+    table {
+        table-layout: fixed;
+    }
+    table thead tr th:first-child {
+        width: 80%;
+    }
+    table tbody tr td {
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
+    .is-first {
+        background-color: rgba(195, 111, 24, 0.2);
+    }
+    .is-over-median {
+        color: #44B39D;
+    }
+    .is-at-median {
+        color: #3B3C3D;
+    }
+    .is-under-median {
+        color: #BF4A67;
+    }
+		.line {
+			border-bottom: 1px solid #dbdbdb ;
+		}
+		label {
+			display: inline-block;
+			width: 18%;
+			cursor: default;
+			font-size: 24px;
+		}
+		span {
+			display: inline-block;
+			width: 80%;
+			vertical-align: middle;
+			font-size: 24px;
+			word-wrap:break-word ;
+		}
+		.btn {
+			margin-top: 20px;
+			font-size: 30px;
+			color: #fff;
+			width: 198px;
+			height: 44px;
+			line-height: 44px;
+			text-align: center;
+			background: #ff4547;
+			border-radius: 8px;
+			cursor: pointer;
+		}
+  </style>
+</head>
+
+<body>
+  <section class="section">
+    <div class="container">
+      <h1 class="title">EOSMax - Game Verification Script</h1>
+      <h2 class="subtitle">Third part script used to verify games on EOSMax.</h2>
+			<hr>
+    </div>
+    
+    <div class="container">
+      <div class="line">
+				<label>user_name:</label>
+				<span id="user_name"></span>
+				
+			</div>
+			<div class="line">
+				<label>play_count:</label>
+				<span id="play_count"></span>
+				
+			</div>
+			<div class="line">
+				<label>playerSeed:</label>
+				<span id="playerSeed"></span>
+				
+			</div>
+			<div class="line">
+				<label>time stamp:</label>
+				<span id="time_stamp">original1234</span>
+				
+			</div>
+			<div class="line">
+				<label>combine_seed:</label>
+				<span id="combine_seed">original1234</span>
+				
+			</div>
+			<div class="line">
+				<label>combine_seed(hash):</label>
+				<span id="combine_seed_hash">original1234</span>
+				
+			</div>
+			<div class="line">
+				<label>public key:</label>
+				<span id="public_key">original1234</span>
+				
+			</div>
+			<div class="line">
+				<label>sign:</label>
+				<span id="sign">original1234</span>
+				
+			</div>
+			<div class="line">
+				<label>formula:</label>
+				<span id="formula">original1234</span>
+				
+			</div>
+    </div>
+    
+		
+    <div class="container">
+			<div class="btn" id="game_verify_submit"> Verify </div> 
+    </div>
+		<div class="container" id="verify-content">
+			<div class="line">
+				<label>sha256(sign):</label>
+				<span id="sha">1</span>
+			</div>
+			<div class="line">
+				<label>last 6 digits:</label>
+				<span id="digits">original1234</span>
+			</div>
+			<div class="line">
+				<label>lucky number:</label>
+				<span id="result">original1234</span>
+			</div>
+			
+		</div>
+   
+  </section>
+    <script type="text/javascript">
+		
+		function Base64() { 
+  
+ // private property 
+ _keyStr = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/="; 
+  
+ // public method for encoding 
+ this.encode = function (input) { 
+  var output = ""; 
+  var chr1, chr2, chr3, enc1, enc2, enc3, enc4; 
+  var i = 0; 
+  input = _utf8_encode(input); 
+  while (i < input.length) { 
+   chr1 = input.charCodeAt(i++); 
+   chr2 = input.charCodeAt(i++); 
+   chr3 = input.charCodeAt(i++); 
+   enc1 = chr1 >> 2; 
+   enc2 = ((chr1 & 3) << 4) | (chr2 >> 4); 
+   enc3 = ((chr2 & 15) << 2) | (chr3 >> 6); 
+   enc4 = chr3 & 63; 
+   if (isNaN(chr2)) { 
+    enc3 = enc4 = 64; 
+   } else if (isNaN(chr3)) { 
+    enc4 = 64; 
+   } 
+   output = output + 
+   _keyStr.charAt(enc1) + _keyStr.charAt(enc2) + 
+   _keyStr.charAt(enc3) + _keyStr.charAt(enc4); 
+  } 
+  return output; 
+ } 
+  
+ // public method for decoding 
+ this.decode = function (input) { 
+  var output = ""; 
+  var chr1, chr2, chr3; 
+  var enc1, enc2, enc3, enc4; 
+  var i = 0; 
+  input = input.replace(/[^A-Za-z0-9\+\/\=]/g, ""); 
+  while (i < input.length) { 
+   enc1 = _keyStr.indexOf(input.charAt(i++)); 
+   enc2 = _keyStr.indexOf(input.charAt(i++)); 
+   enc3 = _keyStr.indexOf(input.charAt(i++)); 
+   enc4 = _keyStr.indexOf(input.charAt(i++)); 
+   chr1 = (enc1 << 2) | (enc2 >> 4); 
+   chr2 = ((enc2 & 15) << 4) | (enc3 >> 2); 
+   chr3 = ((enc3 & 3) << 6) | enc4; 
+   output = output + String.fromCharCode(chr1); 
+   if (enc3 != 64) { 
+    output = output + String.fromCharCode(chr2); 
+   } 
+   if (enc4 != 64) { 
+    output = output + String.fromCharCode(chr3); 
+   } 
+  } 
+  output = _utf8_decode(output); 
+  return output; 
+ } 
+  
+ // private method for UTF-8 encoding 
+ _utf8_encode = function (string) { 
+  string = string.replace(/\r\n/g,"\n"); 
+  var utftext = ""; 
+  for (var n = 0; n < string.length; n++) { 
+   var c = string.charCodeAt(n); 
+   if (c < 128) { 
+    utftext += String.fromCharCode(c); 
+   } else if((c > 127) && (c < 2048)) { 
+    utftext += String.fromCharCode((c >> 6) | 192); 
+    utftext += String.fromCharCode((c & 63) | 128); 
+   } else { 
+    utftext += String.fromCharCode((c >> 12) | 224); 
+    utftext += String.fromCharCode(((c >> 6) & 63) | 128); 
+    utftext += String.fromCharCode((c & 63) | 128); 
+   } 
+  
+  } 
+  return utftext; 
+ } 
+  
+ // private method for UTF-8 decoding 
+ _utf8_decode = function (utftext) { 
+  var string = ""; 
+  var i = 0; 
+  var c = c1 = c2 = 0; 
+  while ( i < utftext.length ) { 
+   c = utftext.charCodeAt(i); 
+   if (c < 128) { 
+    string += String.fromCharCode(c); 
+    i++; 
+   } else if((c > 191) && (c < 224)) { 
+    c2 = utftext.charCodeAt(i+1); 
+    string += String.fromCharCode(((c & 31) << 6) | (c2 & 63)); 
+    i += 2; 
+   } else { 
+    c2 = utftext.charCodeAt(i+1); 
+    c3 = utftext.charCodeAt(i+2); 
+    string += String.fromCharCode(((c & 15) << 12) | ((c2 & 63) << 6) | (c3 & 63)); 
+    i += 3; 
+   } 
+  } 
+  return string; 
+ } 
+} 
+		
+		
+		
+      var isVerifying = false;
+			var sign = ''
+      $('#game_verify_submit').on('click', () => {
+				
+        if (isVerifying) return;
+        isVerifying = true;
+				let sha = CryptoJS.SHA256(sign)
+				$('#sha').html(sha.toString())
+				let digitsStr = sha.toString().substr(sha.toString().length-6,6)
+				$('#digits').html(digitsStr+'('+ parseInt(digitsStr,16).toString() +')')
+				let result = (parseInt(digitsStr,16) % 24) + 1
+				$('#result').html(result)
+				
+				isVerifying = false
+				$('#verify-content').show()
+      });
+			
+		$('#verify-content').hide()
+		var b = new Base64(); 
+
+      var hash_url = window.location.search
+		
+		// alert(hash_url)
+	   // hash_url.replace(/?/g,"")
+      // if ((/\?user_name=\?/).test(hash_url)) {
+      var strs= new Array(); //定义一数组 
+	// alert(b.decode(hash_url))
+		strs=b.decode(hash_url).split("?"); //字符分割 
+			// alert(JSON.stringify(strs))
+			for (var i = 0; i < strs.length; i ++) {
+				var param = strs[i]
+				var params = param.split("=")
+					// alert(params[1])
+
+					switch (i){
+						case 0:
+							$('#user_name').html(params[1])
+							break;
+						case 1:
+							$('#play_count').html(params[1])
+							break;
+						case 2:
+							$('#time_stamp').html(params[1])
+							break;
+						case 3:
+							$('#combine_seed').html(params[1])
+							break;
+						case 4:
+							$('#combine_seed_hash').html(params[1])
+							break;
+						case 5:
+							$('#public_key').html(params[1])
+							break;
+						case 6:
+						sign = params[1]
+							$('#sign').html(sign)
+							break;
+						case 7:
+							$('#formula').html(params[1])
+							break;
+						default:
+							break;
+					}
+				}
+        // $('#game_hash_input').val(hash)
+        // $('#game_verify_submit').click()
+      // }
+    </script>
+    <script>
+      // tell the embed parent frame the height of the content
+      if (window.parent && window.parent.parent) {
+        window.parent.parent.postMessage(["resultsFrame", {
+          height: document.body.getBoundingClientRect().height,
+          slug: "nwu2ffkv"
+        }], "*")
+      }
+    </script>
+</body>
+
+</html>
